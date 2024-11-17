@@ -53,7 +53,7 @@ This is a fullstack stock management system designed to manage inventory effecti
 
 ## Deployment URLs
 
-- **Frontend**: [https://erpprojectdemo.netlify.app](https://erpprojectv1.netlify.app/)  
+- **Frontend**: [https://erpprojectv1.netlify.app/](https://erpprojectv1.netlify.app/)  
 - **Backend**: Deployed on Render (Insert URL here).  
 - **Database**: Hosted on Clever Cloud.
 
