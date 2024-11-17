@@ -10,16 +10,13 @@ function Sales() {
   const [totalPrice, setTotalPrice] = useState(0);
   const quantityRef = useRef(null);
 
-  const getDeductionDevelopmentURL="/api/getDeductionDetails"
-  // const getDeductionProductionURL="http://localhost:8000/getDeductionDetails"
-
-  const deductStockDevelopmentURL="/api/deductStock"
-  //const deductStockProductionURL="http://localhost:8000/deductStock"
+   const getDeductionProductionURL="https://erp-stocks-management.onrender.com/getDeductionDetails"
+  const deductStockProductionURL="https://erp-stocks-management.onrender.com/deductStock"
   
 
   const fetchStocks = async () => {
     try {
-      await axios.get(getDeductionDevelopmentURL).then((response) => {
+      await axios.get(getDeductionProductionURL).then((response) => {
         setStocks(response.data);
       });
     } catch (error) {
@@ -67,7 +64,7 @@ function Sales() {
     };
     console.log("Data:", data);
     try {
-        await axios.post(deductStockDevelopmentURL, data)
+        await axios.post(deductStockProductionURL, data)
         .then((response) => {
             console.log("Stocks deducted successfully:", response.data);
           });

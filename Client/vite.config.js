@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
         // Proxy any API request starting with `/api` to the backend server
         '/api': {
-            target: 'http://localhost:8000', // backend server address
+            target: 'https://erp-stocks-management.onrender.com', // backend server address
             changeOrigin: true,
             secure: false,
             rewrite: (path) => path.replace(/^\/api/, ''), // Remove '/api' prefix before sending request to backend
