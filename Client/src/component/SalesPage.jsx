@@ -25,6 +25,9 @@ function Sales() {
   };
 
   const options = useMemo(() => {
+    // Debugging step: log the stocks data before using map
+    console.log("Stocks data:", stocks);
+    
     if (Array.isArray(stocks)) {
       return stocks.map((stock) => ({
         value: stock.name,
@@ -45,37 +48,30 @@ function Sales() {
 
   const handleDeductStockClick = async () => {
     const quantity = quantityRef.current.value;
-  
-  if (quantity > quantityRemaining) {
-    alert("Quantity exceeds remaining stock!");
-    return;
-  }
-
-    const stock_id = selectedOption.stock_id; 
-    const data = {
-      stock_id,
-      quantity,
-    };
-    console.log("Data:", data);
-    try {
-        await axios.post("/api/deductStock", data)
-        .then((response) => {
-            console.log("Stocks deducted successfully:", response.data);
-          });
-          alert("Stocks deducted successfully");
-          resetAll()
-          fetchStocks();
-    } catch (error) {
-        console.error("Error deducting stock:", error);
+    if (quantity > quantityRemaining) {
+      alert("Quantity exceeds remaining stock!");
+      return;
     }
-    
-  }
+
+    const stock_id = selectedOption.stock_id;
+    const data = { stock_id, quantity };
+
+    try {
+      await axios.post("/api/deductStock", data);
+      alert("Stocks deducted successfully");
+      resetAll();
+      fetchStocks();
+    } catch (error) {
+      console.error("Error deducting stock:", error);
+    }
+  };
+
   const resetAll = () => {
     setQuantityRemaining(0);
     setPrice(0);
     quantityRef.current.value = "";
     setSelectedOption(null);
-  }
+  };
 
   useEffect(() => {
     fetchStocks();
@@ -84,7 +80,7 @@ function Sales() {
   return (
     <div className="m-4 grid grid-cols-1 sm:grid-cols-4 gap-4">
       <div>
-        <label htmlFor="stockSelection" className="sm:text-base text-sm ">
+        <label htmlFor="stockSelection" className="sm:text-base text-sm">
           Stocks deduction
         </label>
         <Select
@@ -94,7 +90,7 @@ function Sales() {
           options={options}
           isSearchable
           placeholder="Select an option..."
-          className="border-2 border-gray-400 rounded-md text-black bg-white text-sm w-full "
+          className="border-2 border-gray-400 rounded-md text-black bg-white text-sm w-full"
         />
       </div>
       <div>
