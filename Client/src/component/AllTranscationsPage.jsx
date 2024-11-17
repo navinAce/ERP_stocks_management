@@ -136,7 +136,7 @@ function AllTranscations() {
             </tr>
           </thead>
           <tbody>
-            {filteredStocks.length > 0 ? (
+            {filteredStocks && filteredStocks.length > 0 ? (
               filteredStocks.map((stock) => (
                 <tr key={stock.id}>
                   <td className="border px-4 py-2">{stock.name}</td>

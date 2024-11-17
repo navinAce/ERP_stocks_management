@@ -207,7 +207,7 @@ function AddStocks() {
             </tr>
           </thead>
           <tbody>
-            {stocks.length > 0 ? (
+            {stocks && stocks.length > 0 ? (
               stocks.map((stock) => (
                 <tr key={stock.id}>
                   <td className="border px-4 py-2">
