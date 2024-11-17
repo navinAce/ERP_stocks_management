@@ -12,14 +12,14 @@ function AddStocks() {
   const [showQuantityInput, setShowQuantityInput] = useState(false);
   const [quantity, setQuantity] = useState("");
 
-  //const addDevelopmentURL="/api/add"
-  const addProductionURL="http://localhost:8000/add"
+  const addDevelopmentURL="/api/add"
+  //const addProductionURL="http://localhost:8000/add"
 
-  // const getStocksDevelopmentURL="/api/getStocks"
-  const getStocksProductionURL="http://localhost:8000/getStocks"
+   const getStocksDevelopmentURL="/api/getStocks"
+  //const getStocksProductionURL="http://localhost:8000/getStocks"
 
-  //const addQuantityDevelopmentURL="/api/addQuantity"
-  const addQuantityProductionURL="http://localhost:8000/addQuantity"
+  const addQuantityDevelopmentURL="/api/addQuantity"
+  //const addQuantityProductionURL="http://localhost:8000/addQuantity"
 
   
 
@@ -41,7 +41,7 @@ function AddStocks() {
 
   const AddStockData = useCallback(async (data) => {
     try {
-      await axios.post(addProductionURL, data).then((response) => {
+      await axios.post(addDevelopmentURL, data).then((response) => {
         console.log("Stocks added successfully:", response.data);
       });
     } catch (error) {
@@ -62,7 +62,7 @@ function AddStocks() {
 
   const fetchStocks = async () => {
     try {
-      await axios.get(getStocksProductionURL).then((response) => {
+      await axios.get(getStocksDevelopmentURL).then((response) => {
         setStocks(response.data);
       });
     } catch (error) {
@@ -93,7 +93,7 @@ function AddStocks() {
       return;
     }
     await axios
-      .post(addQuantityProductionURL, { selectedStocks, quantity })
+      .post(addQuantityDevelopmentURL, { selectedStocks, quantity })
       .then((response) => {
         console.log("Stock quantity added successfully:", response.data);
       });

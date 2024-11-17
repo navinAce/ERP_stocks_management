@@ -9,12 +9,12 @@ function AllTranscations() {
   const [totalAddPrice, setTotalAddPrice] = useState(0);
   const [totalDeductPrice, setTotalDeductPrice] = useState(0);
   
-  //const developmentURL="/api/getTransactions"
-  const productionURL="http://localhost:8000/getTransactions"
+  const developmentURL="/api/getTransactions"
+  //const productionURL="http://localhost:8000/getTransactions"
 
   const fetchStocksTransaction = useCallback(async () => {
     await axios
-      .get(productionURL)
+      .get(developmentURL)
       .then((response) => {
         setStocks(response.data);
         setFilteredStocks(response.data);
