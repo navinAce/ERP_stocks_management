@@ -87,19 +87,25 @@ function AddStocks() {
       alert("Please select and enter a quantity.");
       return;
     }
-    await axios
-      .post(addQuantityProductionURL, { selectedStocks, quantity })
-      .then((response) => {
-        console.log("Stock quantity added successfully:", response.data);
-      });
-    setSelectedStocks([]);
-    setQuantity("");
-    setShowQuantityInput(false);
+    try {
+      await axios
+        .post(addQuantityProductionURL, { selectedStocks, quantity })
+        .then((response) => {
+          console.log("Stock quantity added successfully:", response.data);
+        });
+      setSelectedStocks([]);
+      setQuantity("");
+      setShowQuantityInput(false);
+      fetchStocks();
+    } catch (error) {
+      console.error("Error adding stock quantity:", error);
+      
+    }
   }, [quantity, selectedStocks]);
 
   useEffect(() => {
     fetchStocks();
-  }, [addStockQuantity]);
+  }, []);
 
   return (
     <div>
