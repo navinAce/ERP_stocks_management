@@ -1,11 +1,16 @@
 import mysql2 from 'mysql2';
 
-const connection = mysql2.createConnection({
+const connection = mysql2.createPool({
     host: 'b0oynhti3dmrn9dugkyb-mysql.services.clever-cloud.com',
     user: 'uaz00jqovdzmb5we',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: 3306
+    port: 3306,
+    waitForConnections: true, 
+    connectionLimit: 10, 
+    queueLimit: 0
+    // enableKeepAlive: true, 
+    // keepAliveInitialDelay: 10000 
 });
 
 connection.connect((err) => {
@@ -17,4 +22,4 @@ connection.connect((err) => {
 });
 
 
-export default connection;
+export default connection.promise();
