@@ -22,4 +22,4 @@ const connection = mysql2.createPool({
 // });
 
 
-export default connection.promise();
+export default connection;
