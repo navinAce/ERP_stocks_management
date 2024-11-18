@@ -13,13 +13,13 @@ const connection = mysql2.createPool({
     // keepAliveInitialDelay: 10000 
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to the database:', err.stack);
-        return;
-    }
-    console.log('Connected to the MySQL server');
-});
+// connection.connect((err) => {  ///no need for createPool, only need for createConnection
+//     if (err) {
+//         console.error('Error connecting to the database:', err.stack);
+//         return;
+//     }
+//     console.log('Connected to the MySQL server');
+// });
 
 
 export default connection.promise();
